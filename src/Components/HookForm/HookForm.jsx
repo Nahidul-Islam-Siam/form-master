@@ -1,16 +1,23 @@
+import useInputState from "../Hooks/useInput";
 
 
-const SimpleForm = () => {
-    const handleSubmit = e =>{
-        e.preventDefault();
-        console.log(e.target.name.value);
-        console.log('form submit');
-    }
+const HookForm = () => {
+
+
+const [name,handleNameChange] = useInputState('rojoni')
+
+const handleSubmit = e =>{
+    console.log('form data', name);
+    e.preventDefault()
+}
+
+
     return (
         <div>
-           <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <input
-                
+                value={name}
+                onChange={handleNameChange}
                  type="text" name="name"/>
                 <br />
                 <input
@@ -28,4 +35,4 @@ const SimpleForm = () => {
     );
 };
 
-export default SimpleForm;
+export default HookForm;
